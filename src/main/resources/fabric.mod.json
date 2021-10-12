@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "tameablefoxes",
+  "version": "${version}",
+
+  "name": "TameableFoxes",
+  "description": "Let's you tame foxes",
+  "authors": [
+    "ImUrX"
+  ],
+  "contact": {
+    "homepage": "https://github.com/ImUrX/tameablefoxes",
+    "sources": "https://github.com/ImUrX/tameablefoxes",
+    "issues": "https://github.com/ImUrX/tameablefoxes"
+  },
+
+  "license": "MIT",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.imurx.tameablefoxes.TameableFoxes"
+    ]
+  },
+  "mixins": [
+    "tameablefoxes.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  }
+}

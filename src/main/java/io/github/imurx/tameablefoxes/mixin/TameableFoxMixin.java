@@ -1,7 +1,8 @@
 package io.github.imurx.tameablefoxes.mixin;
 
 
-import io.github.imurx.tameablefoxes.TameableEntity;
+import io.github.imurx.tameablefoxes.TameableFox;
+import io.github.imurx.tameablefoxes.ai.FollowOwnerGoal;
 import io.github.imurx.tameablefoxes.ai.SitGoal;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.Entity;
@@ -37,7 +38,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Mixin(FoxEntity.class)
-public abstract class TameableFox extends AnimalEntity implements TameableEntity {
+public abstract class TameableFoxMixin extends AnimalEntity implements TameableFox {
 
     @Shadow private Goal followChickenAndRabbitGoal;
     @Shadow private Goal followBabyTurtleGoal;
@@ -56,13 +57,14 @@ public abstract class TameableFox extends AnimalEntity implements TameableEntity
     @Unique
     private static final int SITTINGOWNER_FLAG = 2;
 
-    protected TameableFox(EntityType<? extends AnimalEntity> entityType, World world) {
+    protected TameableFoxMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     protected void onInitGoals(CallbackInfo ci)  {
         this.goalSelector.add(2, new SitGoal((FoxEntity) (Object) this));
+        this.goalSelector.add(4, new FollowOwnerGoal(((FoxEntity) (Object) this), 1.5D, 10.0F, 2.0F, false));
     }
 
     @Inject(method = "initDataTracker", at = @At("TAIL"))

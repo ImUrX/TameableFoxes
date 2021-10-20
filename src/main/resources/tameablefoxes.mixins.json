@@ -4,7 +4,7 @@
   "package": "io.github.imurx.tameablefoxes.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "TameableFox",
+    "TameableFoxMixin",
     "TameableFoxMateGoal",
     "FoxEntityAccessor"
   ],

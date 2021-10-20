@@ -1,6 +1,6 @@
 package io.github.imurx.tameablefoxes.mixin;
 
-import io.github.imurx.tameablefoxes.TameableEntity;
+import io.github.imurx.tameablefoxes.TameableFox;
 import net.minecraft.entity.ai.goal.AnimalMateGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.FoxEntity;
@@ -34,7 +34,7 @@ public abstract class TameableFoxMateGoal extends AnimalMateGoal {
         if (serverPlayerEntity == null) {
             mainPlayer = serverPlayerEntity2;
         }
-        TameableEntity realBaby = (TameableEntity) baby;
+        TameableFox realBaby = (TameableFox) baby;
         if(((FoxEntityAccessor) this.animal).invokeCanTrust(mainPlayer.getUuid()) && ((FoxEntityAccessor) this.mate).invokeCanTrust(mainPlayer.getUuid())) {
             realBaby.tameablefoxes$setOwner(mainPlayer);
         }

@@ -2,7 +2,7 @@ package io.github.imurx.tameablefoxes.ai;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import io.github.imurx.tameablefoxes.TameableEntity;
+import io.github.imurx.tameablefoxes.TameableFox;
 import net.minecraft.entity.passive.FoxEntity;
 
 import java.util.EnumSet;
@@ -16,18 +16,18 @@ public class SitGoal extends Goal {
     }
 
     public boolean shouldContinue() {
-        return ((TameableEntity) this.tameable).tameablefoxes$isSittingByOwner();
+        return ((TameableFox) this.tameable).tameablefoxes$isSittingByOwner();
     }
 
     public boolean canStart() {
-        if (!((TameableEntity) this.tameable).tameablefoxes$isTamed()) {
+        if (!((TameableFox) this.tameable).tameablefoxes$isTamed()) {
             return false;
         } else if (this.tameable.isInsideWaterOrBubbleColumn()) {
             return false;
         } else if (!this.tameable.isOnGround()) {
             return false;
         } else {
-            LivingEntity livingEntity = ((TameableEntity) this.tameable).getOwner();
+            LivingEntity livingEntity = ((TameableFox) this.tameable).getOwner();
             if (livingEntity == null) {
                 return true;
             } else {
@@ -38,10 +38,10 @@ public class SitGoal extends Goal {
 
     public void start() {
         this.tameable.getNavigation().stop();
-        ((TameableEntity) this.tameable).tameablefoxes$setSittingByOwner(true);
+        ((TameableFox) this.tameable).tameablefoxes$setSittingByOwner(true);
     }
 
     public void stop() {
-        ((TameableEntity) this.tameable).tameablefoxes$setSittingByOwner(false);
+        ((TameableFox) this.tameable).tameablefoxes$setSittingByOwner(false);
     }
 }
